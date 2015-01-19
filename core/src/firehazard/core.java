@@ -16,8 +16,10 @@ public class core extends ApplicationAdapter{
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+
+		/* Creating a particle */
 		effect = new ParticleEffect();
-		effect.load(Gdx.files.internal("effects/explode.p"), Gdx.files.internal("effects"));
+		effect.load(Gdx.files.internal("effects/explode.particle"), Gdx.files.internal("effects"));
 		effect.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 		effect.start();
 		//img = new Texture("badlogic.jpg");
@@ -29,8 +31,8 @@ public class core extends ApplicationAdapter{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		//batch.draw(img, 0, 0);
-		effect.draw(batch, Gdx.graphics.getRawDeltaTime());
-		effect.update(Gdx.graphics.getRawDeltaTime());
+		effect.draw(batch, Gdx.graphics.getRawDeltaTime()); // Draw the particle
+		effect.update(Gdx.graphics.getRawDeltaTime()); // Update the particle
 		batch.end();
 	}
 }
