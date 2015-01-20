@@ -4,19 +4,20 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 //import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class core extends ApplicationAdapter{
 	SpriteBatch batch;
 	//Texture img;
-
+	BitmapFont font;
 	private ParticleEffect effect;
-	
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-
+		font = new BitmapFont();
 		/* Creating a particle */
 		effect = new ParticleEffect();
 		effect.load(Gdx.files.internal("effects/explode.particle"), Gdx.files.internal("effects"));
@@ -31,8 +32,10 @@ public class core extends ApplicationAdapter{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		//batch.draw(img, 0, 0);
+
 		effect.draw(batch, Gdx.graphics.getRawDeltaTime()); // Draw the particle
 		effect.update(Gdx.graphics.getRawDeltaTime()); // Update the particle
+		font.draw(batch,"FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 20);
 		batch.end();
 	}
 }
