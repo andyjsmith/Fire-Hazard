@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class DubstepGun {
 
@@ -12,10 +11,8 @@ public class DubstepGun {
     Music dub2;
     ParticleEffect effect;
     boolean dub = false;
-    SpriteBatch batch;
 
     public void loadGun(){
-        batch = new SpriteBatch();
         dub1 = Gdx.audio.newMusic(Gdx.files.internal("sounds/dub1.ogg"));
         dub2 = Gdx.audio.newMusic(Gdx.files.internal("sounds/dub2.ogg"));
         effect = new ParticleEffect();
@@ -52,9 +49,7 @@ public class DubstepGun {
             dub2.stop();
             dub = false;
         }
-        batch.begin();
-        effect.draw(batch, Gdx.graphics.getRawDeltaTime()); // Draw the particle
+        effect.draw(Common.batch, Gdx.graphics.getRawDeltaTime()); // Draw the particle
         effect.update(Gdx.graphics.getRawDeltaTime()); // Update the particle
-        batch.end();
     }
 }
